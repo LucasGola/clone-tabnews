@@ -9,17 +9,25 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
-    ssl: process.env.NODE_ENV === "development" ? false : true,
+    ssl: process.env.SSL === "development" ? false : true,
   });
+
+  console.log(`node env = ${process.env.ENVIRONMENT}`);
 
   const client = new Client({
     host: process.env.POSTGRES_HOST,
-    port: process.env.POSTGRES_PORT,
+    port: Number(process.env.POSTGRES_PORT),
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
-    ssl: process.env.NODE_ENV === "development" ? false : true,
+    ssl: process.env.ENVIRONMENT === "development" ? false : true,
+    enableChannelBinding: true,
   });
+
+  /* const client = new Client({
+    connectionString:
+      "postgresql://neondb_owner:npg_n0oaiDKSypA5@ep-royal-lake-aqhk325v.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+  }); */
 
   try {
     await client.connect();
