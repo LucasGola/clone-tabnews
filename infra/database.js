@@ -3,16 +3,16 @@ import pg from "pg";
 const { Client } = pg;
 
 async function query(queryObject) {
-  console.log({
+  /*   console.log({
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_PORT,
     user: process.env.POSTGRES_USER,
     database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
     ssl: process.env.SSL === "development" ? false : true,
-  });
+  }); */
 
-  console.log(`node env = ${process.env.ENVIRONMENT}`);
+  // console.log(`node env = ${process.env.ENVIRONMENT}`);
 
   const client = new Client({
     host: process.env.POSTGRES_HOST,
